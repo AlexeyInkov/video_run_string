@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "video-run-string-script"
+version = "0.1.0"
+description = ""
+authors = ["Alexey Inkov <alex0982@mail.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+opencv-python = "^4.9.0.80"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
