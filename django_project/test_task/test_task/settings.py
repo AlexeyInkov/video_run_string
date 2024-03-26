@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
+
 import os.path
 from pathlib import Path
 
@@ -25,7 +26,10 @@ SECRET_KEY = "django-insecure-8%l3g02uv+&x+yn0izg&^k+2iay6%&)y$qljkczgj2b1pi!b)0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["alex0982.pythonanywhere.com",]
+ALLOWED_HOSTS = [
+    "alex0982.pythonanywhere.com",
+    "127.0.0.1",
+]
 
 
 # Application definition
@@ -37,7 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "video.apps.VideoConfig"
+    "video.apps.VideoConfig",
 ]
 
 MIDDLEWARE = [
@@ -125,8 +129,8 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-MEDIA_URL = 'media/'
+MEDIA_URL = "media/"
 
-media = os.path.join(BASE_DIR, 'upload')
+media = os.path.join(BASE_DIR, "upload")
 os.makedirs(media, exist_ok=True)
-MEDIA_ROOT = BASE_DIR / 'upload'
+MEDIA_ROOT = BASE_DIR / "upload"
