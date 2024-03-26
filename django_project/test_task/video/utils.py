@@ -4,15 +4,24 @@ import cv2
 import numpy
 from django.conf import settings
 
+from uuid import uuid4
+from pytils.translit import slugify
+
+
+def get_slug(text):
+    slug = slugify(text)
+    while os.path.exists(os.path.join(settings.MEDIA_ROOT, f"{slug}.mp4")):
+        slug = f'{slug}-{uuid4().hex[:4]}'
+    return slug
+
 
 def create_video_opencv(text: str):
     width, height = 100, 100
     video_length = 3
     fps = 60
-    filename = "my_video.mp4"
-    filename = os.path.join(settings.MEDIA_ROOT, filename)
+    filename = f"{get_slug(text)}.mp4"
     out = cv2.VideoWriter(
-        filename, cv2.VideoWriter_fourcc(*"mp4v"), fps, (width, height)
+        os.path.join(settings.MEDIA_ROOT, filename), cv2.VideoWriter_fourcc(*"mp4v"), fps, (width, height)
     )
 
     # Фон(черный)
