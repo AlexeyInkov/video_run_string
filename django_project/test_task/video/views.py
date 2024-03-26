@@ -16,7 +16,7 @@ def video_run_string(request: HttpRequest) -> HttpResponse:
     file_path = os.path.join(settings.MEDIA_ROOT, filename)
     if os.path.exists(file_path):
         with open(file_path, 'rb') as video:
-            response = FileResponse(video.read(), content_type="video")
+            response = HttpResponse(video.read(), content_type="video")
             response['Content-Disposition'] = 'attachment; filename="%s"' % filename
             return response
     raise Http404
