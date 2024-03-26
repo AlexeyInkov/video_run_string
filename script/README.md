@@ -4,9 +4,10 @@
 
 #### Установка зависимостей
 
+```pip install poetry```
+
 ```poetry install```
 
 #### Запуск
 
-- ```python main.py "text"```
-- text - текст бегущей строки
+- ```python main.py```
