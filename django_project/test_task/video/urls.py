@@ -11,9 +11,9 @@ from .views import (
 app_name = "video"
 
 urlpatterns = [
-    path("/", VideoListView.as_view(), name="list_video"),
-    path("add/", video_run_string, name="add_video"),
-    path("create/", VideoCreateView.as_view(), name="create_video"),
-    path("<slug:slug>/", VideoDetailView.as_view(), name="detail_video"),
-    path("<slug:slug>/delete/", VideoDeleteView.as_view(), name="delete_video"),
+    path("video/", VideoListView.as_view(), name="list_video"),
+    path("video/add/", video_run_string, name="add_video"),
+    path("video/create/", VideoCreateView.as_view(), name="create_video"),
+    path("video/<slug:slug>/", VideoDetailView.as_view(), name="detail_video"),
+    path("video/<slug:slug>/delete/", VideoDeleteView.as_view(), name="delete_video"),
 ]
