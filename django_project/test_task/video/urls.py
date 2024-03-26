@@ -1,12 +1,12 @@
 
 from django.urls import path
 
-from .views import VideoRunStringView
+from .views import video_run_string
 
 
 app_name = "video"
 
 
 urlpatterns = [
-    path("add/", VideoRunStringView.as_view(), name="create_video"),
+    path("add/", video_run_string, name="create_video"),
 ]
