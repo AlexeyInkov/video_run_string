@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "video-run-string-django-project"
+version = "0.1.0"
+description = ""
+authors = ["Alexey Inkov <alex0982@mail.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+opencv-python = "^4.9.0.80"
+Django = "4.2"
+gunicorn = "^21.2.0"
+djangorestframework = "^3.15.1"
+django-filter = "^24.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
