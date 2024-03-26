@@ -1,0 +1,24 @@
+{% extends 'video/base.html' %}
+
+{% block title %}
+    Video #{{ object.slug }}
+{% endblock %}
+
+{% block body %}
+<h1>Video <strong>{{ object.slug }}</strong></h1>
+<div>
+    <div>run_string: <em>{{ object.run_string }}</em></div>
+    <div>File: {{ object.file }}</div>
+    <div>Created at: {{ object.created_at}}</div>
+
+</div>
+
+
+
+<div>
+    <a href="{% url 'video:video_delete' slug=object.slug %}">Delete video</a>
+</div>
+<div>
+    <a href="{% url 'video:video_list' %}">Back to video list</a>
+</div>
+{% endblock %}
