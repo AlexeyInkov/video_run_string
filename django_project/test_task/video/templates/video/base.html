@@ -1,0 +1,30 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+        Base Title
+        {% endblock %}
+    </title>
+</head>
+
+<body>
+{% block body %}
+Base Body
+{% endblock %}
+</body>
+<footer>
+    <div>
+        {% now 'l' as current_weekday%}
+        Today is {{ current_weekday }}
+    </div>
+    <div>
+        {% now 'd M Y' %}
+    </div>
+    <div>
+        {% now 'H:i' %}
+    </div>
+</footer>
+</html>
