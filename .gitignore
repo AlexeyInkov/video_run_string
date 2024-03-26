@@ -138,3 +138,5 @@ GitHub.sublime-settings
 !.vscode/extensions.json
 .history
 /script/my_video.mp4
+*.mp4
+/django_project/test_task/upload/
