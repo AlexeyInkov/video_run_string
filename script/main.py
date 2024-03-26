@@ -11,11 +11,8 @@ def create_video_opencv(text: str):
     fps = 60
     filename = "my_video.mp4"
     out = cv2.VideoWriter(
-        filename,
-        cv2.VideoWriter_fourcc(*'mp4v'),
-        fps,
-        (width, height)
-        )
+        filename, cv2.VideoWriter_fourcc(*"mp4v"), fps, (width, height)
+    )
 
     # Фон(черный)
     frame = numpy.zeros((height, width, 3), dtype=numpy.uint8)
@@ -39,24 +36,15 @@ def create_video_opencv(text: str):
     for _ in range(video_length * fps):
         frame.fill(0)
         x -= dx
-        cv2.putText(
-            frame,
-            text,
-            (x, y),
-            font,
-            font_scale,
-            font_color,
-            font_thickness
-            )
+        cv2.putText(frame, text, (x, y), font, font_scale, font_color, font_thickness)
         out.write(frame)
     out.release()
 
 
 def main():
-    string = input('Введи текст: ')
+    string = input("Введи текст: ")
     create_video_opencv(string)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
-
