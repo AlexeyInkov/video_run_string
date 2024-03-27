@@ -1,34 +1,9 @@
-import os
-
-
 from django.http import HttpRequest, HttpResponse, Http404
 from django.urls import reverse_lazy
-
 from django.views.generic import ListView, CreateView, DetailView, DeleteView
 
-from test_task import settings
 from video.models import VideoFile
-from video.utils import create_video_opencv, get_slug
-
-
-def create_file(run_string: str) -> HttpResponse:
-    video = VideoFile.objects.filter(run_string=run_string)
-    if video.exists():
-        filename = video.first().file
-        filename = str(filename)
-    else:
-        slug = get_slug(run_string)
-        video = VideoFile.objects.create(slug=slug, run_string=run_string)
-        filename = create_video_opencv(run_string, slug)
-        video.file = filename
-        video.save()
-    filepath = os.path.join(settings.MEDIA_URL, filename)
-    if os.path.exists(filepath):
-        with open(filepath, "rb") as video:
-            response = HttpResponse(video.read(), content_type="video")
-            response["Content-Disposition"] = 'attachment; filename="%s"' % filename
-            return response
-    raise Http404
+from video.utils import create_file
 
 
 def video_run_string(request: HttpRequest) -> HttpResponse:
@@ -45,7 +20,6 @@ class VideoListView(ListView):
 class VideoCreateView(CreateView):
     model = VideoFile
     fields = ["run_string"]
-    success_url = reverse_lazy("video:list_video")
 
     def post(self, request, *args, **kwargs):
         run_string = request.POST.get("run_string", None)

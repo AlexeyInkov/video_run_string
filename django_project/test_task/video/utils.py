@@ -1,10 +1,9 @@
 import os.path
+from uuid import uuid4
 
 import cv2
 import numpy
-
-
-from uuid import uuid4
+from django.http import HttpResponse, Http404
 from pytils.translit import slugify
 
 from test_task import settings
@@ -56,3 +55,23 @@ def create_video_opencv(text: str, slug: str):
         out.write(frame)
     out.release()
     return filename
+
+
+def create_file(run_string: str) -> HttpResponse:
+    video = VideoFile.objects.filter(run_string=run_string)
+    if video.exists():
+        filename = video.first().file
+        filename = str(filename)
+    else:
+        slug = get_slug(run_string)
+        video = VideoFile.objects.create(slug=slug, run_string=run_string)
+        filename = create_video_opencv(run_string, slug)
+        video.file = filename
+        video.save()
+    filepath = os.path.join(settings.MEDIA_URL, filename)
+    if os.path.exists(filepath):
+        with open(filepath, "rb") as video:
+            response = HttpResponse(video.read(), content_type="video")
+            response["Content-Disposition"] = 'attachment; filename="%s"' % filename
+            return response
+    raise Http404
