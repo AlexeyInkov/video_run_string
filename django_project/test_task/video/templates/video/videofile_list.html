@@ -5,30 +5,29 @@ Video List
 {% endblock %}
 
 {% block body %}
-<h1>Products:</h1>
+<h1>Video:</h1>
 
 <div>
 
     {% if not object_list %}
-    <h3>No products yet</h3>
+    <h3>No video yet</h3>
     {% else %}
     {% for video in object_list%}
 
     <div>
-        <p><a href="{% url 'video:video_detail' slug=video.slug %}"
-        >slug: {{ video.slug }}</a></p>
-        <p>run_string: {{ video.run_string }}</p>
+        <p>run_string: <a href="{% url 'video:detail_video' slug=video.slug %}">
+             {{ video.run_string }}</a></p>
         <p>file: {{ video.file }}</p>
         <p>created_at: {{ video.created_at }}</p>
     </div>
-
+    <br>
     {% endfor %}
 
     {% endif %}
 </div>
 
 <div>
-    <a href="{% url 'video:video_create' %}">Create a new video</a>
+    <a href="{% url 'video:create_video' %}">Create a new video</a>
 </div>
 
 {% endblock %}

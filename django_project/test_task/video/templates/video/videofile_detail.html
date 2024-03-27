@@ -1,24 +1,35 @@
 {% extends 'video/base.html' %}
 
 {% block title %}
-    Video #{{ object.slug }}
+Video #{{ object.run_string }}
 {% endblock %}
 
 {% block body %}
-<h1>Video <strong>{{ object.slug }}</strong></h1>
+<h1>Video <strong>{{ object.run_string }}</strong></h1>
 <div>
-    <div>run_string: <em>{{ object.run_string }}</em></div>
-    <div>File: {{ object.file }}</div>
+    <div>
+        Run_string: {{ object.run_string }}
+    </div>
+    <div>
+        <video controls width="300" height="300">
+            <source src="{{ object.file.url }}" type="video/mp4">
+
+        </video>
+    </div>
+    <div>
+        Download file: <a href="{{ object.file.url }}" download> {{ object.file }}</a>
+    </div>
     <div>Created at: {{ object.created_at}}</div>
 
 </div>
-
+<br>
 
 
 <div>
-    <a href="{% url 'video:video_delete' slug=object.slug %}">Delete video</a>
+    <a href="{% url 'video:delete_video' slug=object.slug %}">Delete video</a>
 </div>
+<br>
 <div>
-    <a href="{% url 'video:video_list' %}">Back to video list</a>
+    <a href="{% url 'video:list_video' %}">Back to video list</a>
 </div>
 {% endblock %}

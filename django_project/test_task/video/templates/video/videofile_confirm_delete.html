@@ -12,9 +12,9 @@ Confirm archive {{ object.slug }}
         <input type="submit" value="Confirm">
     </form>
 </div>
+<br>
 <div>
-    <a href="{% url 'video:video_detail' slug=object.slug %}"
-    >Back to video</a>
+    <a href="{% url 'video:detail_video' slug=object.slug %}">Back to video</a>
 </div>
 {% endblock %}
 

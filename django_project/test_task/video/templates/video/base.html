@@ -8,21 +8,26 @@
         Base Title
         {% endblock %}
     </title>
+    <br>
 </head>
 
 <body>
 {% block body %}
 Base Body
 {% endblock %}
+<br>
 </body>
 <footer>
     <div>
+
         {% now 'l' as current_weekday%}
         Today is {{ current_weekday }}
     </div>
+    <br>
     <div>
         {% now 'd M Y' %}
     </div>
+
     <div>
         {% now 'H:i' %}
     </div>
