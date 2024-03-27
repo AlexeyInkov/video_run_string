@@ -23,7 +23,7 @@ def create_video_opencv(text: str, slug: str):
     fps = 60
     filename = f"{slug}.mp4"
     out = cv2.VideoWriter(
-        os.path.join(settings.MEDIA_URL, filename),
+        os.path.join(settings.MEDIA_ROOT, filename),
         cv2.VideoWriter_fourcc(*"H264"),  # *"mp4v"  *"XVID" *'H264'
         fps,
         (width, height),
@@ -68,7 +68,7 @@ def create_file(run_string: str) -> HttpResponse:
         filename = create_video_opencv(run_string, slug)
         video.file = filename
         video.save()
-    filepath = os.path.join(settings.MEDIA_URL, filename)
+    filepath = os.path.join(settings.MEDIA_ROOT, filename)
     if os.path.exists(filepath):
         with open(filepath, "rb") as video:
             response = HttpResponse(video.read(), content_type="video")

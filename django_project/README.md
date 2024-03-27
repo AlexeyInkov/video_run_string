@@ -12,6 +12,8 @@
 
 ```python manage.py createsuperuser```
 
+```python manage.py collectstatic```
+
 #### Запуск
 
 - локально ```python manage.py runserver ```
