@@ -11,12 +11,17 @@ from video.models import VideoFile
 from video.utils import create_video_opencv, get_slug
 
 
-def create_file(run_string):
-    slug = get_slug(run_string)
-    video = VideoFile.objects.create(slug=slug, run_string=run_string)
-    filename = create_video_opencv(run_string, slug)
-    video.file = filename
-    video.save()
+def create_file(run_string: str) -> HttpResponse:
+    video = VideoFile.objects.filter(run_string=run_string)
+    if video.exists():
+        filename = video.first().file
+        filename = str(filename)
+    else:
+        slug = get_slug(run_string)
+        video = VideoFile.objects.create(slug=slug, run_string=run_string)
+        filename = create_video_opencv(run_string, slug)
+        video.file = filename
+        video.save()
     filepath = os.path.join(settings.MEDIA_URL, filename)
     if os.path.exists(filepath):
         with open(filepath, "rb") as video:
