@@ -24,7 +24,7 @@ def create_video_opencv(text: str, slug: str):
     filename = f"{slug}.mp4"
     out = cv2.VideoWriter(
         os.path.join(settings.MEDIA_ROOT, filename),
-        cv2.VideoWriter_fourcc(*"H264"),  # *"mp4v"  *"XVID" *'H264'
+        cv2.VideoWriter_fourcc(*"mp4v"),  # *"mp4v"  *"XVID" *'H264'
         fps,
         (width, height),
     )
