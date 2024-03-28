@@ -35,6 +35,7 @@ else:
 
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
+SECURE_HSTS_SECONDS = 300
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(",")
 
